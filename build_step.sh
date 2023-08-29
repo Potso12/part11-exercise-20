@@ -4,7 +4,7 @@ echo "Build script"
 
 
 npm install
-cd blog-frontend
+cd bloglist-frontend
 npm run build
 
 echo "Build ready"
