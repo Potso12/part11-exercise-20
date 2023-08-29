@@ -1,0 +1,15 @@
+on:
+  schedule:
+    - cron: '0 17 * * *'  # Runs every day at 17:00
+
+jobs:
+   main:
+    name: Deploy to Render
+    runs-on: ubuntu-latest
+            
+    steps:
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@v3
+        with:
+          # Check the following URLs one by one sequentially
+          url: https://dinoapp-uefk.onrender.com/
