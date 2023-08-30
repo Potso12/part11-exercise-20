@@ -1,9 +1,10 @@
 const dummy = (blogs) => {
+  console.log(blogs)
   return 1;
 }
 
 const totalLikes = (blogs) => {
-  const sum = blogs.reduce((accumulator, currentvalue) =>{
+  const sum = blogs.reduce((accumulator, currentvalue) => {
     return accumulator + currentvalue.likes
   },0)
   return sum
@@ -64,7 +65,7 @@ const mostLikes = (blogs) => {
     authorLikes[author] = (authorLikes[author] || 0) + likes;
   });
 
- 
+
   let mostLikedAuthor = '';
   let maxLikes = 0;
   for (const author in authorLikes) {

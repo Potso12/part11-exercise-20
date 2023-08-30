@@ -7,10 +7,10 @@ notesRouter.get('', async (request, response) => {
     const blogs = await Blog.find({}).populate('user', 'username name');
     response.json(blogs);
   });
-  
+
   notesRouter.get('/:id', (request, response) => {
     const { id } = request.params;
-  
+
     Blog.findById(id)
       .then(blog => {
         if (blog) {
@@ -20,6 +20,7 @@ notesRouter.get('', async (request, response) => {
         }
       })
       .catch(error => {
+        console.log(error)
         response.status(500).json({ error: 'Server error' });
       });
   });
@@ -28,13 +29,13 @@ notesRouter.get('', async (request, response) => {
   notesRouter.post('',userExtractor ,async (request, response) => {
     try {
       const { title, author, url, likes } = request.body;
-  
+
       if (!title || !url) {
         return response.status(400).json({ error: 'Title and URL are required fields' });
       }
-  
+
       console.log(request.user)
-  
+
       const blog = new Blog({
         title,
         author,
@@ -42,7 +43,7 @@ notesRouter.get('', async (request, response) => {
         likes: likes || 0,
         user: request.user._id
       });
-  
+
       request.user.blogs.push(blog)
       await request.user.save()
 
@@ -53,17 +54,17 @@ notesRouter.get('', async (request, response) => {
       response.status(500).json({ error: 'Internal server error' });
     }
   });
-  
+
 
   notesRouter.delete('/:id', userExtractor , async (request, response) => {
     try {
       const { id } = request.params;
- 
+
       const user = request.user
       const blog = await Blog.findById(id);
 
 
-  
+
       if (user.id.toString() === blog.user.toString()) {
         await Blog.findByIdAndDelete(id);
         response.status(204).end();
@@ -77,21 +78,21 @@ notesRouter.get('', async (request, response) => {
 
   notesRouter.put('/:id', async (request, response) => {
     const { title, author, url, likes } = request.body;
-  
+
     if (!title || !url || !author) {
       return response.status(400).json({ error: 'Title, URL and author are required fields' });
     }
-  
+
     const updatedBlog = await Blog.findByIdAndUpdate(
       request.params.id,
       { title, author, url, likes },
       { new: true }
     );
-  
+
     if (!updatedBlog) {
       return response.status(404).json({ error: 'Blog not found' });
     }
-  
+
     response.json(updatedBlog);
   });
 

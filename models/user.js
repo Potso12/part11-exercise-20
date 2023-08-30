@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     name: String,
     passwordHash: String,
   })
-  
+
   userSchema.set('toJSON', {
     transform: (document, returnedObject) => {
       returnedObject.id = returnedObject._id.toString()
