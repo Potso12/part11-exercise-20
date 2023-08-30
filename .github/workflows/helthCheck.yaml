@@ -1,11 +1,10 @@
 on:
-  push:
-    branches:
-    - master
+  schedule:
+    - cron: '0 17 * * *'  # Runs every day at 17:00
 
 jobs:
    main:
-    name: Deploy to Render
+    name: checking the deployed app
     runs-on: ubuntu-latest
             
     steps:
