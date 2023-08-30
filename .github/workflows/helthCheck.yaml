@@ -4,7 +4,7 @@ on:
 
 jobs:
    main:
-    name: Deploy to Render
+    name: checking the deployed app
     runs-on: ubuntu-latest
             
     steps:
@@ -12,4 +12,4 @@ jobs:
         uses: jtalk/url-health-check-action@v3
         with:
           # Check the following URLs one by one sequentially
-          url: https://dinoapp-uefk.onrender.com/
+          url: https://blogapp-mk0k.onrender.com
