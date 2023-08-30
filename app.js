@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'blog-frontend/build')));
 app.use(express.json())
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'blog-frontend/build/static', 'index.html'));
+  res.sendFile(path.join(__dirname, 'bloglist-frontend/build/static', 'index.html'));
 });
 
 app.use(middleware.requestLogger)
