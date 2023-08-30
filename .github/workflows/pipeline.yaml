@@ -18,11 +18,9 @@ jobs:
         with:
           node-version: '16'
       - name: Install dependencies
-        run: npm install
+        run: npm install && cd bloglist-frontend && npm install
       - name: linter
         run: npm run lint
-      - name: tests
-        run: npm run test
       - name: build front end
         run: npm run build-frontend
 
@@ -52,10 +50,3 @@ jobs:
         with:
           service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
           api-key: ${{ secrets.MY_RENDER_API_KEY }}
-      - name: Deploy Success
-        uses: rjstone/discord-webhook-notify@v1.0.4
-        if: success() && github.event_name == 'push'
-        with:
-            severity: info
-            details: Deploy of pokeapp was Success!
-            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}

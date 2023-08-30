@@ -13,7 +13,6 @@ const mongoose = require('mongoose')
 
 mongoose.set('strictQuery', false)
 
-
 const url = config.MONGODB_URI
 
 logger.info('connecting to', url)
@@ -35,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'blog-frontend/build')));
 app.use(express.json())
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'blog-frontend/build/static', 'index.html'));
+  res.sendFile(path.join(__dirname, 'bloglist-frontend/build', 'index.html'));
 });
 
 app.use(middleware.requestLogger)

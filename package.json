@@ -8,7 +8,8 @@
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "lint": "eslint . && cd bloglist-frontend && npm run eslint",
-    "build-frontend": "cd bloglist-frontend && npm run build"
+    "build-frontend": "cd bloglist-frontend && npm run build",
+    "install-all": "npm install && cd bloglist-frontend && npm install"
   },
   "repository": {
     "type": "git",
